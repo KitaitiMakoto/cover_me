@@ -1,4 +1,4 @@
-require 'test/unit/color-scheme'
+require 'test/unit/color'
 
 class CoverMe::ConsoleFormatter < CoverMe::Formatter
 
@@ -10,12 +10,12 @@ class CoverMe::ConsoleFormatter < CoverMe::Formatter
     tuc = Test::Unit::Color
     colors = {
       'reset' => (tuc.new('reset')).escape_sequence,
-      'hit'   => (tuc.new('green',foreground: false) +
-                  tuc.new('white', bold: true)).escape_sequence,
-      'near'  => (tuc.new('yellow',bold: true) +
-                  tuc.new('black', foreground: false)).escape_sequence,
-      'miss'  => (tuc.new('red', foreground: false) +
-                  tuc.new('white', bold: true)).escape_sequence
+      'hit'   => (tuc.new('green',  foreground: false) +
+                  tuc.new('white',  bold: true)).escape_sequence,
+      'near'  => (tuc.new('yellow', bold: true) +
+                  tuc.new('black',  foreground: false)).escape_sequence,
+      'miss'  => (tuc.new('red',    foreground: false) +
+                  tuc.new('white',  bold: true)).escape_sequence
     }
 
     puts ERB.new(File.read(template_file), nil, '-').result(binding)

@@ -1,7 +1,7 @@
 <%= index.percent_tested < 100 ? colors['miss'] : colors['hit'] %><%= index.percent_tested %>% tested.<%= colors['reset'] %>
 <%- unless index.percent_tested == 100 -%>
 <%-   index.reports.sort.each do |report|
-       unless report.executed_percent == 100
+        unless report.executed_percent == 100
  -%>
   <%= colors[report.proximity] %><%= report.filename %> - <%= report.executed_percent %>%(<%= report.lines_executed %>/<%= report.lines_of_code %> lines) tested.<%= colors['reset'] %>
     Untested line(s):
