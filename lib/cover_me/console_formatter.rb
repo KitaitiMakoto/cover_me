@@ -24,7 +24,7 @@ class CoverMe::ConsoleFormatter < CoverMe::Formatter
       colors = {}
     end
 
-    $stdout.print ERB.new(File.read(template_file), nil, '-').result(binding)
+    template('console.erb', '-').run(binding)
   end
 
 end
