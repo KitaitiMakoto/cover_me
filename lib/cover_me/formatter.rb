@@ -38,8 +38,8 @@ class CoverMe::Formatter
   #   template('index.html.erb') # => ERB object
   # 
   # The ERB object return still needs to be bound and processed.
-  def template(file)
-    ERB.new(File.read(File.join(File.dirname(__FILE__), 'templates', file)))
+  def template(file, trim_mode = nil)
+    ERB.new(File.read(File.join(File.dirname(__FILE__), 'templates', file)), nil, trim_mode)
   end
   
 end
