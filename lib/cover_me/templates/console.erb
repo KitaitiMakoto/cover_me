@@ -1,23 +1,2 @@
-<%= index.percent_tested < 100 ? colors['miss'] : colors['hit'] %><%= index.percent_tested %>% tested.<%= colors['reset'] %>
-<%- unless index.percent_tested == 100 -%>
-<%-   index.reports.sort.each do |report|
-        unless report.executed_percent == 100
- -%>
-  <%= colors[report.proximity] %><%= report.filename %> - <%= report.executed_percent %>%(<%= report.lines_executed %>/<%= report.lines_of_code %> lines) tested.<%= colors['reset'] %>
-<%-       if config.verbose -%>
-    Untested line(s):
-<%-         report.coverage.each_with_index do |count, i|
-              if count == 0
-                sl = report.source.length
-                sls = sl.to_s.length
- -%>
-    <%= ' ' * sls %>:<%= report.source[i - 1].chomp if i > 0 %>
-    <%= colors['miss'] %><%= sprintf "%0#{sls}d", i + 1 %>:<%= report.source[i].chomp %><%= colors['reset'] %>
-    <%= ' ' * sls %>:<%= report.source[i + 1].chomp if i < sl %>
 
-<%-           end -%>
-<%-         end -%>
-<%-       end -%>
-<%-     end -%>
-<%-   end -%>
-<%- end -%>
+<%= index.percent_tested < 100 ? colors['miss'] : colors['hit'] %><%= index.percent_tested %>% tested.<%= colors['reset'] %>

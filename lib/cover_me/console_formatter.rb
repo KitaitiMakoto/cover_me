@@ -25,6 +25,19 @@ class CoverMe::ConsoleFormatter < CoverMe::Formatter
     end
 
     template('console.erb', '-').run(binding)
+    unless index.percent_tested == 100
+      index.reports.sort.each do |report|
+        template('console.file.erb', '-').run(binding)
+        next unless config.verbose
+        report.coverage.each_with_index do |count, i|
+          if count == 0
+            sl = report.source.length
+            sls = sl.to_s.length
+            template('console.verbose.erb', '-').run(binding)
+          end
+        end
+      end
+    end
   end
 
 end
