@@ -1,8 +1,37 @@
-require 'test/unit/color'
-
 class CoverMe::ConsoleFormatter < CoverMe::Formatter
 
-  Color = Test::Unit::Color
+  COLOR_CODE = {
+    reset:      '0',
+
+    foreground: '3',
+    background: '4',
+
+    black:      '0',
+    red:        '1',
+    green:      '2',
+    yellow:     '3',
+    blue:       '4',
+    magenta:    '5',
+    cyan:       '6',
+    white:      '7',
+
+    bold:       '1',
+    italic:     '3',
+    underline:  '4'
+  }
+
+  COLOR = {
+    'reset' => "\e[" + COLOR_CODE[:reset] + 'm',
+    'hit'   => "\e[" + COLOR_CODE[:foreground] + COLOR_CODE[:white]  +
+                 ';' + COLOR_CODE[:bold] +
+                 ';' + COLOR_CODE[:background] + COLOR_CODE[:green]  + 'm',
+    'near'  => "\e[" + COLOR_CODE[:foreground] + COLOR_CODE[:yellow] +
+                 ';' + COLOR_CODE[:bold] +
+                 ';' + COLOR_CODE[:background] + COLOR_CODE[:black]  + 'm',
+    'miss'  => "\e[" + COLOR_CODE[:foreground] + COLOR_CODE[:white]  +
+                 ';' + COLOR_CODE[:bold] +
+                 ';' + COLOR_CODE[:background] + COLOR_CODE[:red]    + 'm'
+  }
 
   def format_report(report)
   end
@@ -10,7 +39,7 @@ class CoverMe::ConsoleFormatter < CoverMe::Formatter
   def format_index(index)
     template_file = File.join(File.dirname(__FILE__), 'templates', 'console.erb')
     config = CoverMe.config.console_formatter
-    colors = config.use_color ? self.colors : {}
+    color = config.use_color ? COLOR : {}
 
     template('console.erb', '-').run(binding)
     return if index.percent_tested == 100
@@ -20,11 +49,12 @@ class CoverMe::ConsoleFormatter < CoverMe::Formatter
       next unless config.verbose
 
       $stdout.puts '    Untested line(s):' unless report.executed_percent == 100.0
-      sls = (report.source.length + 1).to_s.length
+      num_width = (report.source.length).to_s.length
       last_rendered = nil
       report.coverage.each_with_index do |count, line|
-        next unless report.coverage[line - 1] == 0 || count == 0 || report.coverage[line + 1] == 0
-        # $stdout.puts '' unless count == 0 || report.coverage[line - 1] == 0
+        next unless report.coverage[line - 1] == 0 ||
+                    count == 0                     ||
+                    report.coverage[line + 1] == 0
 
         status = count == 0 ? 'miss' : 'hit'
         template('console.line.erb', '-').run(binding)
@@ -32,17 +62,5 @@ class CoverMe::ConsoleFormatter < CoverMe::Formatter
       end
       $stdout.puts '' if config.verbose && index.percent_tested == 100
     end
-  end
-
-  def colors
-    {
-      'reset' => (Color.new('reset')).escape_sequence,
-      'hit'   => (Color.new('green',  foreground: false) +
-                  Color.new('white',  bold: true)).escape_sequence,
-      'near'  => (Color.new('yellow', bold: true) +
-                  Color.new('black',  foreground: false)).escape_sequence,
-      'miss'  => (Color.new('red',    foreground: false) +
-                  Color.new('white',  bold: true)).escape_sequence
-    }
   end
 end

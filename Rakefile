@@ -23,7 +23,6 @@ Gemstub.gem_spec do |s|
   s.rubyforge_project = 'magrathea'
   s.add_dependency('configatron')
   s.add_dependency('hashie')
-  s.add_dependency('test-unit', '>= 2')
   s.email = 'mark+cover_me@markbates.com'
   s.homepage = 'http://www.metabates.com'
   s.required_ruby_version = '>= 1.9.2'
