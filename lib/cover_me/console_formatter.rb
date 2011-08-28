@@ -37,7 +37,6 @@ class CoverMe::ConsoleFormatter < CoverMe::Formatter
   end
 
   def format_index(index)
-    template_file = File.join(File.dirname(__FILE__), 'templates', 'console.erb')
     config = CoverMe.config.console_formatter
     color = config.use_color ? COLOR : {}
 
