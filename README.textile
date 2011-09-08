@@ -96,9 +96,14 @@ CoverMe is easily configurable, under the covers it uses the "Configatron":http:
 h2. Contributors
 
 * Mark Bates
-* Leif Bladt
-* Alex Crichton
 * Andrea Campi
+* KITAITI Makoto
+* Alex Crichton
+* Leif Bladt
+* Will Marshall
+* Matthew Albright
+* Lasse Koskela
+* Josef Sin
+* Stephen Delano
 * Rob Zolkos
 * jmthomas
-* Lasse Koskela

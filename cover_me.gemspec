@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{cover_me}
-  s.version = "1.1.2.20110817090130"
+  s.name = "cover_me"
+  s.version = "1.2.0.20110907090445"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["markbates"]
-  s.date = %q{2011-08-17}
-  s.description = %q{CoverMe - Code Coverage for Ruby 1.9}
-  s.email = %q{mark+cover_me@markbates.com}
+  s.date = "2011-09-07"
+  s.description = "CoverMe - Code Coverage for Ruby 1.9"
+  s.email = "mark+cover_me@markbates.com"
   s.extra_rdoc_files = ["LICENSE"]
   s.files = ["lib/cover_me/config.rb", "lib/cover_me/console_formatter.rb", "lib/cover_me/directory_report.rb", "lib/cover_me/emma_formatter.rb", "lib/cover_me/formatter.rb", "lib/cover_me/global_report.rb", "lib/cover_me/hash.rb", "lib/cover_me/html_formatter.rb", "lib/cover_me/index.rb", "lib/cover_me/processor.rb", "lib/cover_me/report.rb", "lib/cover_me/results.rb", "lib/cover_me/templates/console.erb", "lib/cover_me/templates/console.file.erb", "lib/cover_me/templates/console.line.erb", "lib/cover_me/templates/emma.xml.erb", "lib/cover_me/templates/index.css", "lib/cover_me/templates/index.html.erb", "lib/cover_me/templates/jquery.js", "lib/cover_me/templates/jquery.tablesorter.js", "lib/cover_me/templates/report.css", "lib/cover_me/templates/report.html.erb", "lib/cover_me.rb", "lib/generators/cover_me/install/install_generator.rb", "lib/generators/cover_me/install/templates/cover_me.rake", "LICENSE"]
   s.homepage = %q{http://www.metabates.com}
@@ -30,9 +30,9 @@ This will install a Rake task to wrap your tests in CoverMe.
 }
   s.require_paths = ["lib"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.9.2")
-  s.rubyforge_project = %q{magrathea}
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{CoverMe - Code Coverage for Ruby 1.9}
+  s.rubyforge_project = "magrathea"
+  s.rubygems_version = "1.8.10"
+  s.summary = "CoverMe - Code Coverage for Ruby 1.9"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
